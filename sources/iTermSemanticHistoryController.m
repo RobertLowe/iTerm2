@@ -49,8 +49,8 @@ NSString *const kSemanticHistoryWorkingDirectorySubstitutionKey = @"semanticHist
 }
 
 - (BOOL)fileExistsAtPathLocally:(NSString *)path {
-    return [self.fileManager fileExistsAtPathLocally:path
-                              additionalNetworkPaths:[[iTermAdvancedSettingsModel pathsToIgnore] componentsSeparatedByString:@","]];
+    // FIX: This seems to fix an issue where using network stores via symlinks fail to detect
+    return [self.fileManager fileExistsAtPath:path];
 }
 
 - (BOOL)fileHasForbiddenPrefix:(NSString *)path {
